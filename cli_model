@@ -1,0 +1,6 @@
+npx sequelize-cli model:generate --name User --attributes email:string,password:string,full_name:string,role:string,avatar:string,telephone:string
+npx sequelize-cli model:generate --name Tour --attributes title:string,description:text,owner_id:integer,region:string,price:integer,location_x:string,location_y:string,is_approved:boolean,length_days:integer,path_img:string
+npx sequelize-cli model:generate --name Tour_date --attributes tour_id:integer,date:date,quantity_seats:integer
+npx sequelize-cli model:generate --name Reservation_tour --attributes user_id:integer,tour_id:integer,date:date
+npx sequelize-cli model:generate --name Rating --attributes user_id:integer,tour_id:integer,rate:integer
+npx sequelize-cli model:generate --name Comment --attributes user_id:integer,tour_id:integer,comment_text:string
