@@ -4,9 +4,11 @@ const cors = require("cors");
 const { Server } = require("socket.io");
 const session = require("express-session");
 const FileStore = require("session-file-store")(session);
+const path = require("path");
 const apiRouter = require("./routes/apiRouter");
 
 require("dotenv").config();
+
 
 const app = express();
 const PORT = process.env.PORT || 3001;
@@ -28,6 +30,7 @@ const corsOptions = {
   credentials: true,
 };
 
+app.use(express.static(path.join(process.cwd(), "public")));
 app.use(cors({ credentials: true, origin: true }));
 app.use(morgan("dev"));
 app.use(express.json());
