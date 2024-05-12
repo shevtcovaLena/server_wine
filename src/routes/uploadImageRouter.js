@@ -7,7 +7,7 @@ const fs = require("fs");
 const storage = multer.diskStorage({
   // Настройка директории для сохранения файлов
   destination(req, file, cb) {
-    cb(null, "../client/public/images");
+    cb(null, path.join(__dirname, "../../public/images"));
   },
   // Настройка имени файла
   filename(req, file, cb) {
@@ -34,7 +34,7 @@ router.post("/del_main", async (req, res) => {
     // console.log(req.file);
 
     const { fileName } = req.body;
-    const directoryPath = path.join(__dirname, "../../client/public/images");
+    const directoryPath = path.join(__dirname, "../../public/images");
     const filePath = path.join(directoryPath, fileName);
 
     fs.unlink(filePath, (err) => {

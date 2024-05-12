@@ -44,7 +44,7 @@ const io = new Server(server, { cors: corsOptions });
 io.on("connection", (socket) => {
   socket.on("join", ({ userName, tourId }) => {
     // console.log("Пользователь подключился", socket.id);
-    // console.log("Пользователь подключился", socket.rooms);
+    console.log("Пользователь подключился", socket.rooms);
     // console.log(tourId);
     socket.join(tourId);
 
