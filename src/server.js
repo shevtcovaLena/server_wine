@@ -9,7 +9,6 @@ const apiRouter = require("./routes/apiRouter");
 
 require("dotenv").config();
 
-
 const app = express();
 const PORT = process.env.PORT || 3001;
 
@@ -26,7 +25,7 @@ const sessionConfig = {
 };
 const corsOptions = {
   origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://wine-dev.vercel.app"],
-
+  exposedHeaders: ["set-cookie"],
   credentials: true,
 };
 
@@ -46,9 +45,7 @@ const io = new Server(server, { cors: corsOptions });
 
 io.on("connection", (socket) => {
   socket.on("join", ({ userName, tourId }) => {
-    // console.log("Пользователь подключился", socket.id);
     console.log("Пользователь подключился", socket.rooms);
-    // console.log(tourId);
     socket.join(tourId);
 
     socket.emit("message", {
@@ -62,7 +59,6 @@ io.on("connection", (socket) => {
 
   socket.on("sendMessage", ({ data }) => {
     console.log("Получено сообщение:", data.message);
-    // Отправляем сообщение всем подключенным клиентам
     io.to(data.room).emit("message", { data });
   });
 
