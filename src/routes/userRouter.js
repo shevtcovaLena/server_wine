@@ -36,6 +36,7 @@ router.post("/login", async (req, res) => {
           role: user.role,
           avatar: user.avatar,
         };
+        console.log(req.session.user.full_name)
         req.session.save(() => {
           res.status(200).json(req.session.user);
         });
