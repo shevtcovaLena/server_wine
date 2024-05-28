@@ -20,7 +20,9 @@ const sessionConfig = {
   saveUninitialized: false,
   cookie: {
     maxAge: 24 * 1000 * 60 * 60,
-    httpOnly: false,
+    httpOnly: true,
+    sameSite: "None",
+    secure: true,
   },
 };
 const corsOptions = {
