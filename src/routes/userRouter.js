@@ -117,10 +117,8 @@ router.get("/:id", async (req, res) => {
 });
 
 router.patch("/", async (req, res) => {
-  // console.log("Здеееееесь", req.body, req.session.user);
   const { full_name, telephone, avatar } = req.body;
   const { id } = req.session.user;
-  // console.log(id)
   try {
     if (avatar) {
       await User.update(
@@ -133,7 +131,6 @@ router.patch("/", async (req, res) => {
       { where: { id } },
     );
     const updateUser = await User.findOne({ where: { id } });
-    // console.log("UpdateUser =======>",updateUser)
     res.status(200).json(updateUser);
   } catch (error) {
     console.log("ОШИБКА", error);

@@ -1,5 +1,6 @@
+/* eslint-disable no-restricted-syntax */
+/* eslint-disable linebreak-style */
 const router = require("express").Router();
-// const { compareSync } = require("bcrypt");
 const {
   User,
   Tour,
@@ -18,8 +19,6 @@ router.get("/active", async (req, res) => {
     });
 
     const mapReservations = async (tour) => {
-      // console.log(tour.dataValues.id);
-
       const reserev = await Reservation_tour.findAll({
         where: {
           tour_date_id: tour.dataValues.id,
@@ -27,7 +26,7 @@ router.get("/active", async (req, res) => {
         include: [
           {
             model: User,
-            attributes: ["full_name", "telephone"], // Поля модели User
+            attributes: ["full_name", "telephone"],
           },
         ],
       });
@@ -48,9 +47,7 @@ router.get("/active", async (req, res) => {
 
     function addDaysToDate(dateStr) {
       const date = new Date(dateStr);
-      date.setDate(date.getDate()); // Добавляем дни
-
-      // Форматируем дату обратно в строку
+      date.setDate(date.getDate());
       const year = date.getFullYear();
       const month = String(date.getMonth() + 1).padStart(2, "0"); // Месяцы начинаются с 0
       const day = String(date.getDate()).padStart(2, "0");
@@ -71,7 +68,7 @@ router.get("/active", async (req, res) => {
           newData.push({
             id: iterator.dataValues.id,
             title: `${iterator.dataValues.title} [${addDaysToDate(
-              td.date
+              td.date,
             )} ${addDaysToDate(td.date_end)}]  Мест ${arrReserv.length}/${
               td.quantity_seats
             }`,
@@ -82,7 +79,6 @@ router.get("/active", async (req, res) => {
       }
     }
 
-    // console.log("newData ======================== ",newData);
     res.status(200).json(newData);
   } catch (error) {
     console.log(error);

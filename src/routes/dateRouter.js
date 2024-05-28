@@ -3,7 +3,6 @@ const { Tour_date, Reservation_tour } = require("../../db/models");
 
 // Получаем все даты по всем турам
 router.get("/", async (req, res) => {
-  //   console.log('Зашли в ручку');
   try {
     const allDateByTour = await Tour_date.findAll({ raw: true });
     res.json(allDateByTour);
@@ -31,7 +30,6 @@ router.get("/tour/:id", async (req, res) => {
 
 // Получаем дату по id
 router.get("/:id", async (req, res) => {
-  // console.log("Зашли в ручку");
   const { id } = req.params;
   try {
     const oneDate = await Tour_date.findOne({ where: { id } });
