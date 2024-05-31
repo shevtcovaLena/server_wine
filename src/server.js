@@ -26,7 +26,7 @@ const sessionConfig = {
   },
 };
 const corsOptions = {
-  origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://wine-dev.vercel.app"],
+  origin: ["http://localhost:5173", "http://127.0.0.1:5173", "https://wine-dev.vercel.app", "http://localhost:80", "http://192.168.88.209:80"],
   exposedHeaders: ["set-cookie"],
   credentials: true,
 };
